@@ -7,9 +7,37 @@ sources:
       - name: my_first_table1
       - name: my_first_table2
       - name: my_first_table3
+      - name: my_first_table4
+      - name: my_first_table5
+    
 
 models:
     - name: create_first_table
+      description: "A starter dbt model"
+      columns:
+          - name: Id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+    - name: with_clause
+      description: "A starter dbt model"
+      columns:
+          - name: Id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+
+    - name: create_sepal_agg
+      description: "A starter dbt model"
+      columns:
+          - name: Id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+    - name: create_petal_agg
       description: "A starter dbt model"
       columns:
           - name: Id
