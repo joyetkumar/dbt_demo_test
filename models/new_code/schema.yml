@@ -45,3 +45,12 @@ models:
             tests:
                 - unique
                 - not_null
+
+    - name: create_final_view
+      description: "A starter dbt model"
+      columns:
+          - name: Id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null

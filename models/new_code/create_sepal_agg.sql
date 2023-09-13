@@ -1,3 +1,4 @@
+{{ config(materialized='table') }}
 with sepal_length as (
 select Id as Id,
 SepalLengthCm as SepalLengthCm

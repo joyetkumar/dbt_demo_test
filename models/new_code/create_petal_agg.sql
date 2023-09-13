@@ -1,24 +1,25 @@
-with petal_length as (
-select Id as Id,
-PetalLengthCm as PetalLengthCm
-from
-{{source ('staging1','my_first_table3')}}
-),
+{{ config(materialized='table') }}
+with
+    petal_length as (
+        select id as id, petallengthcm as petallengthcm
+        from {{ source("staging1", "my_first_table3") }}
+    ),
 
-petal_witdth as (
-select Id as Id,
-PetalWidthCm as PetalWidthCm
-from
-{{source ('staging1','my_first_table5')}}
-),
+    petal_witdth as (
+        select id as id, petalwidthcm as petalwidthcm
+        from {{ source("staging1", "my_first_table5") }}
+    ),
 
-species as (
-select Id as Id,
-Species as Species
-from
-{{source ('staging1','my_first_table4')}}
-)
+    species as (
+        select id as id, species as species
+        from {{ source("staging1", "my_first_table4") }}
+    )
 
-select l.Id, l.PetalLengthCm*w.PetalWidthCm AS petal_multiplication,l.PetalLengthCm+w.PetalWidthCm AS petal_add,s.Species from petal_length l
-INNER JOIN petal_witdth w ON l.Id=w.Id
-INNER JOIN species s ON w.Id=s.Id
+select
+    l.id,
+    l.petallengthcm * w.petalwidthcm as petal_multiplication,
+    l.petallengthcm + w.petalwidthcm as petal_add,
+    s.species
+from petal_length l
+inner join petal_witdth w on l.id = w.id
+inner join species s on w.id = s.id
