@@ -45,7 +45,6 @@ models:
             tests:
                 - unique
                 - not_null
-
     - name: create_final_view
       description: "A starter dbt model"
       columns:
