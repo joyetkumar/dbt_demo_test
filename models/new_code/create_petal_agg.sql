@@ -19,7 +19,7 @@ select
     l.id,
     l.petallengthcm * w.petalwidthcm as petal_multiplication,
     l.petallengthcm + w.petalwidthcm as petal_add,
-    s.species
+    s.species,CURRENT_DATE() as curr_date
 from petal_length l
 inner join petal_witdth w on l.id = w.id
 inner join species s on w.id = s.id
